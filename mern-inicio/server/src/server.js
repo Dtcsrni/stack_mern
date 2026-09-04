@@ -11,5 +11,7 @@ const PORT = 5000;
 app.listen(PORT, () => {
     //Esta función se ejecuta cuando el servidor
     //ya consiguió abrir correctamenteel puerto
-    console.log('Servidor ejecutandose en http://localhost:${PORT}');
+    console.log(
+        `Servidor ejecutandose en http://localhost:${PORT}`
+    );
 });

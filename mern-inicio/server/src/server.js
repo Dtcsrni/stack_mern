@@ -1,17 +1,29 @@
 //Importamos la aplicación Express que configuramos
 //en el archivo app.js
-import app from './app.js';
-//Definimos el puerto en el que escuchará nuestro backend
-//Un puerto es una puerta lógica utilizada por una aplicación
-//para recibir conexiones de red
-const PORT = 5000;
-//app.listen() inicia realmente el servidor HTTP
-//Esta instrucción hace que Node quede escuchando peticiones
-//en el puerto indicado
-app.listen(PORT, () => {
-    //Esta función se ejecuta cuando el servidor
-    //ya consiguió abrir correctamenteel puerto
-    console.log(
-        `Servidor ejecutandose en http://localhost:${PORT}`
-    );
-});
+import app from "./app.js";
+
+//Importamos la función responsable de conectar con la base de datos de MongoDB
+import { conectarDB } from "./config/db.js";
+
+//Importamos nuestras variables de entorno para la configuración
+import { env } from "./config/env.js";
+
+//Creamos una función asíncrona
+//Primero conectamos la BD
+//y luego levantamos el servidor de express
+async function iniciarServidor() {
+  try {
+    //Intentamos establecer la conexión
+    await conectarDB(env.mongodb_uri);
+    //Si se establece la conexión
+    //entonces abrimos el servidor HTTP
+    app.listen(env.port, () => {
+      console.log(`Servidor escuchando en el puerto ${env.port}`);
+    });
+  } catch (error) {
+    console.error("Error al iniciar el servidor:", error);
+    process.exit(1); // Salir del proceso con un código de error
+  }
+}
+
+iniciarServidor();

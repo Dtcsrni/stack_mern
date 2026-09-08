@@ -1,26 +1,38 @@
-//Importamos Express que es el framework que utilizaremos para levantar nuestro servidor HTTP
+//Importar express
 import express from "express";
-//importamos CORS que es un middleware que nos permite controlar el acceso a nuestro backend desde el frontend
+//Importamos CORS
 import cors from "cors";
-//Importamos nuestras variables de entorno para la configuración
-import { env } from "./config/env.js";
-//Creamos la aplicación Express
+
+//Importamos la configuración
+import {env} from "./config/env.js";
+//Importamos las rutas
+import tareasRouter from "./routes/tareas.routes.js";
+
+//Creamos la aplicación de Express
 const app = express();
-//COnfiguramos CORS para permitir el acceso desde el frontend
+
+//Usamos el middleware de CORS
 app.use(
   cors({
-    origin: env.clientURL,
+    origin: env.clientURL
   })
 );
-//Permitimos que Express pueda recibir datos en formato JSON
+//Usamos el middleware de Express para parsear JSON
 app.use(express.json());
-//Endpoint para comprobar la salud de la API
-app.get("/api/salud", (req, res) => {
+
+//Se define una ruta de salud para saber
+//si el servidor está corriendo correctamente}
+app.get("/salud", (req, res) => {
   res.json({
-    estado:"ok",
-    mensaje:"Servidor funcionando correctamente"
+    estado: "ok",
+    mensaje: "Servidor corriendo correctamente",
+    fecha: new Date().toISOString(),
   });
 });
 
-//Exportamos la aplicación para poder utilizarla en otros archivos
-export default app;
+//Rutas de tareas
+//Todas las rutas definidas para la aplicación
+app.use("/tareas", 
+  tareasRouter);
+
+  export default app;

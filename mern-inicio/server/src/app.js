@@ -32,7 +32,7 @@ app.get("/salud", (req, res) => {
 
 //Rutas de tareas
 //Todas las rutas definidas para la aplicación
-app.use("/tareas", 
+app.use("/", 
   tareasRouter);
 
   export default app;

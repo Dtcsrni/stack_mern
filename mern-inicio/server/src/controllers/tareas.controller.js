@@ -3,14 +3,14 @@
 import Tarea from "../models/Tarea.js";
 
 //Listamos todas las tareas almacenadas en la base de datos
-export async function listaTareas(res, req) {
+export async function listaTareas(req, res) {
   try {
     const tareas = await Tarea.find().sort({ createdAt: -1 }); // -1 implica un orden descendente, es decir, de la más reciente a la más antigua
-    res.json(tareas);
+    return res.json(tareas);
   } catch (error) {
     //Si sucede un error de base de datos, se devuelve un error 500
-    res.status(500).json({
-      mensaje: "Error al listar las tareas",
+    return res.status(500).json({
+      mensaje: "Error al obtener las tareas",
       error: error.message,
     });
   }
@@ -32,10 +32,10 @@ export async function crearTarea(req, res) {
     const tarea = await Tarea.create({
       titulo: titulo.trim(),
     });
-    res.status(201).json(tarea);
+    return res.status(201).json(tarea);
   } catch (error) {
     //Si sucede un error
-    res.status(500).json({
+    return res.status(500).json({
       mensaje: "Error al crear la tarea",
       error: error.message,
     });

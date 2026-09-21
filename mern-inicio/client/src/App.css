@@ -12,3 +12,51 @@ h1{
 header{
 margin-bottom: 30px;
 }
+
+header h1{
+margin: 0 0 6px;
+}
+header p{
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+form{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+form input{
+  min-width: 200px;
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #aaa;
+  font-size: 16px;
+}
+
+button{
+  padding: 10px 12px;
+  font-size: 16px;
+  border: 1px solid #aaa;
+  background: #fff;
+  cursor: pointer;
+}
+
+button:hover{
+  background: #eee;
+}
+
+form error{
+  width: 100%;
+  color: red;
+  margin: 10px;
+}
+ul{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px solid #ddd;
+}

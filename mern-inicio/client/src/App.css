@@ -6,28 +6,32 @@ main {
   border-radius: 12px;
 }
 
-h1{
+h1 {
   margin-bottom: 4px;
 }
-header{
-margin-bottom: 30px;
+
+header {
+  margin-bottom: 30px;
 }
 
-header h1{
-margin: 0 0 6px;
+header h1 {
+  margin: 0 0 6px;
 }
-header p{
+
+header p {
   margin: 0;
   color: #666;
   font-size: 14px;
 }
-form{
+
+form {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 30px;
 }
-form input{
+
+form input {
   min-width: 200px;
   flex: 1;
   padding: 10px 12px;
@@ -35,7 +39,7 @@ form input{
   font-size: 16px;
 }
 
-button{
+button {
   padding: 10px 12px;
   font-size: 16px;
   border: 1px solid #aaa;
@@ -43,20 +47,57 @@ button{
   cursor: pointer;
 }
 
-button:hover{
+button:hover {
   background: #eee;
 }
 
-form error{
+.error {
   width: 100%;
   color: red;
-  margin: 10px;
+  margin: 10px 0 0;
 }
-ul{
+
+.lista-tareas {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.tarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
   padding: 13px 0;
   border-bottom: 1px solid #ddd;
+}
+
+.tarea-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.tarea-completada {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.boton-eliminar {
+  border-color: #d66;
+  color: #a11;
+}
+
+.estado-vacio {
+  margin: 0 0 20px;
+  color: #666;
+}
+
+.resumen {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  font-weight: 600;
 }

@@ -48,19 +48,35 @@ h1 {
 
 .encabezado {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 24px;
+  flex-direction: column;
   margin-bottom: 30px;
 }
+.hero-contenedor {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-bottom: 30px;
+  background: #f4f4f4;
+}
+.hero-banner {
+  width: 100%;
+  max-height: 40vh;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  animation: aparecerHero 650ms ease-out;
+}
+
 
 /*Usar el espacio disponible para el texto del encabezado*/
 .encabezado-texto {
   flex: 1;
+  color: #333;
 }
 
 .encabezado h1 {
   margin: 0 0 6px;
+  color: #222;
 }
 
 .encabezado p {

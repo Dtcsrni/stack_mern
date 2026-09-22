@@ -7,7 +7,7 @@ function Encabezado({ titulo, subtitulo }) {
   return (
     <header className="encabezado">
       <div className="hero-contenedor">
-        <img src={hero} alt="Imagen de encabezado" className="imagen-hero" />
+        <img src={hero} alt="Imagen de encabezado" className="hero-banner" />
       </div>
       <div className="encabezado-texto">
         <h1>{titulo}</h1>

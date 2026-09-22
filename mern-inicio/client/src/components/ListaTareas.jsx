@@ -6,16 +6,27 @@ function ListaTareas({ tareas, onAlternar, onEliminar }) {
   }
 
   return (
-    <ul className="lista-tareas">
-      {tareas.map((tarea) => (
-        <Tarea
-          key={tarea.id}
-          tarea={tarea}
-          onAlternar={onAlternar}
-          onEliminar={onEliminar}
-        />
-      ))}
-    </ul>
+    <div className="tabla-contenedor">
+      <table className="tabla-tareas">
+        <thead>
+          <tr>
+          <th scope="col">Tarea</th>
+          <th scope="col">Estado</th>
+          <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {tareas.map((tarea) => (
+            <Tarea
+              key={tarea.id}
+              tarea={tarea}
+              onAlternar={onAlternar}
+              onEliminar={onEliminar}
+            />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

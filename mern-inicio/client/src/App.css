@@ -5,24 +5,63 @@ main {
   padding: 30px;
   border-radius: 12px;
 }
+.tabla-contenedor {
+  width: 100%;
+  overflow-x: auto;
+}
+.tabla-tareas{
+  width: 100%;
+  border-collapse: collapse;
+}
+.tabla-tareas th,
+.tabla-tareas td{
+  background: #f4f4f4;
+  font-weight: 400;
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.tabla-tareas th{
+  background: #eaeaea;
+  font-weight: 600;
+}
+.tarea-label{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 h1 {
   margin-bottom: 4px;
 }
 
-header {
+.encabezado{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
   margin-bottom: 30px;
 }
-
-header h1 {
+/*Usar el espacio disponible para el texto del encabezado*/
+.encabezado-texto{
+  flex: 1;
+}
+.encabezado h1{
   margin: 0 0 6px;
 }
-
-header p {
+.encabezado p{
   margin: 0;
   color: #666;
   font-size: 14px;
 }
+.imagen-hero{
+  width: 50%;
+  max-height: 30%;
+  height: auto;
+  object-fit: contain;
+}
+
+
 
 form {
   display: flex;
@@ -79,15 +118,26 @@ button:hover {
   flex: 1;
 }
 
-.tarea-completada {
-  text-decoration: line-through;
-  color: #0a007d;
-  opacity: 0.7;
-}
+
 
 .boton-eliminar {
   border-color: #d66;
   color: #a11;
+}
+.estado{
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+.estado-pendiente {
+  background: #fdd;
+  color: rgb(17, 22, 170);
+}
+
+.estado-completada {
+  background: rgb(18, 163, 18);
+  color: rgb(6, 25, 122);
 }
 
 .estado-vacio {

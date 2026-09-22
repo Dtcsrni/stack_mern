@@ -6,6 +6,9 @@ import hero from "../assets/hero.jpg";
 function Encabezado({ titulo, subtitulo }) {
   return (
     <header className="encabezado">
+      <div className="hero-contenedor">
+        <img src={hero} alt="Imagen de encabezado" className="imagen-hero" />
+      </div>
       <div className="encabezado-texto">
         <h1>{titulo}</h1>
         <p>{subtitulo}</p>
@@ -14,7 +17,6 @@ function Encabezado({ titulo, subtitulo }) {
         //src recibe el recurso URL de la imagen importada
         //La propiedad alt proporciona una descripción alternativa de la imagen para mejorar la accesibilidad y SEO
       }
-      <img src={hero} alt="Imagen de encabezado" className="imagen-hero"/>
     </header>
   );
 }

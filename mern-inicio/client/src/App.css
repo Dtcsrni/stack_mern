@@ -81,7 +81,8 @@ button:hover {
 
 .tarea-completada {
   text-decoration: line-through;
-  color: #777;
+  color: #0a007d;
+  opacity: 0.7;
 }
 
 .boton-eliminar {

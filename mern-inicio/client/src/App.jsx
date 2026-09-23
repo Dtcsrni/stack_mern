@@ -148,4 +148,28 @@ function App() {
       console.error("Error al eliminar la tarea:", error);
     }
   }
-  
+
+  const total = tareas.length;
+  const completadas = tareas.filter((tarea) => tarea.completada).length;
+
+  return (
+    <main>
+      <Encabezado
+        titulo="Administrador de Tareas"
+        subtitulo="Aplicación creada con React"
+      />
+
+      <FormularioTarea onAgregarTarea={agregarTarea} />
+
+      <ListaTareas
+        tareas={tareas}
+        onAlternar={alternarTareas}
+        onEliminar={eliminarTarea}
+      />
+
+      <ResumenTareas total={total} completadas={completadas} />
+    </main>
+  );
+}
+
+export default App;

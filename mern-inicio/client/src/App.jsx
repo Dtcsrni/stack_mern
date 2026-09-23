@@ -1,30 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Encabezado from "./components/Encabezado";
 import FormularioTarea from "./components/FormularioTarea";
 import ListaTareas from "./components/ListaTareas";
 import ResumenTareas from "./components/ResumenTareas";
 
-const tareasIniciales = [
-  {
-    id: "t1",
-    titulo: "Revisar estructura del proyecto",
-    completada: true,
-  },
-  {
-    id: "t2",
-    titulo: "Practicar componentes de React",
-    completada: false,
-  },
-  {
-    id: "t3",
-    titulo: "Preparar conexión con la APP",
-    completada: false,
-  },
-];
 
 function App() {
-  const [tareas, setTareas] = useState(tareasIniciales);
+  //Se inicializa el estado de las tareas como un arreglo vacío
+  const [tareas, setTareas] = useState([]);
+
+  const API_URL = import.meta.env.VITE_API_URL;
 
   function agregarTarea(titulo) {
     const nuevaTarea = {

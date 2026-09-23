@@ -42,3 +42,74 @@ export async function crearTarea(req, res) {
   }
 }
 
+export async function actualizarTarea(req, res) {
+  try {
+    const { id } = req.params;
+    const { completada } = req.body;
+
+    //Buscar el documento por su identificador e MongoDB
+    //modificar unicamente el campo completada
+    //new: true permite que Mongoose devuelva el documento despues de haber sido 
+    //actualizado
+    const tarea = await Tarea.findByIdAndUpdate(
+      id,
+      { completada },
+      { new: true } // Esto hace que se devuelva el documento actualizado
+    );
+
+    //Si no existe una tarea con un identificador 
+    //findbyIdAndUpdate devuelve null
+    if (!tarea) {
+      return res.status(404).json({
+        mensaje: "Tarea no encontrada",
+      });
+    } 
+
+    return res.json({
+      mensaje: "Tarea actualizada correctamente",
+      tarea: tarea
+    });
+  } catch (error) {
+    //Si sucede un error
+    return res.status(500).json({
+      mensaje: "Error interno al ejecutar la operacion",
+      error: error.message,
+    });
+  } 
+}
+
+export async function eliminarTarea(req, res) {
+      try {
+        const { id } = req.params;
+
+        //Buscar el documento por su identificador e MongoDB
+        //Si no existe una tarea con un identificador
+        //findbyIdAndDelete devuelve null
+        const tarea = await Tarea.findByIdAndDelete(id);
+
+        //Comprobamos si la tarea fue encontrada y eliminada
+        if (!tarea) {
+          return res.status(404).json({
+            mensaje: "Tarea no encontrada",
+          });
+        }
+
+        //COnfirmar al cliente si la operación fue exitosa
+        return res.json({
+          mensaje: "Tarea eliminada correctamente",
+        });
+
+        //Confirmamos al cliente que la operación terminó correctamente y devolvemos el documento eliminado
+        return res.json({
+          mensaje: "Tarea eliminada correctamente",
+          tarea: tarea
+        });
+      } catch (error) {
+        //Si sucede un error
+        return res.status(500).json({
+          mensaje: "Error interno al ejecutar la operacion",
+          error: error.message,
+        });
+      } 
+    }
+    

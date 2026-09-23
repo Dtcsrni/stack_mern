@@ -4,7 +4,9 @@ import express from "express";
 
 import{
     listaTareas,
-    crearTarea
+    crearTarea,
+    actualizarTarea,
+    eliminarTarea
 } from "../controllers/tareas.controller.js";
 
 //Creamos un enrutador (Router) para agrupar rutas relacionadas al mismo recurso
@@ -21,6 +23,18 @@ listaTareas
 router.post(
 "/",
 crearTarea
+)
+
+//Actualizar parcialmente una tarea, en este caso solo el campo completada
+router.patch(
+"/:id",
+actualizarTarea
+)
+
+//Elimina la tarea con el identificador especificado
+router.delete(
+"/:id",
+eliminarTarea
 )
 
 export default router;

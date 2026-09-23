@@ -18,7 +18,7 @@ function ListaTareas({ tareas, onAlternar, onEliminar }) {
         <tbody>
           {tareas.map((tarea) => (
             <Tarea
-              key={tarea.id}
+              key={tarea._id}
               tarea={tarea}
               onAlternar={onAlternar}
               onEliminar={onEliminar}

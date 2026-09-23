@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Encabezado from "./components/Encabezado";
 import FormularioTarea from "./components/FormularioTarea";
@@ -12,7 +12,7 @@ function App() {
 
   const API_URL = import.meta.env.VITE_API_URL;
 
-  async function obtenerTareas() {
+  const obtenerTareas = useCallback(async () => {
     try {
       //fetch realiza una petición http
       //al no especificar el método, por defecto es GET
@@ -21,7 +21,7 @@ function App() {
       //Se verifica el código de respuesta http
       //Será verdadero cuando el servidor responda con un código 200
       if(!respuesta.ok) {
-        throw new Error('Error al obtener las tareas: ${respuesta.statusText}');
+        throw new Error(`Error al obtener las tareas: ${respuesta.statusText}`);
       }
 
       //Convertimos el cuerpo del JSON en un valor de JavaScript
@@ -34,7 +34,7 @@ function App() {
     } catch (error) {
       console.error("Error al obtener las tareas:", error);
     }
-  }
+  }, [API_URL]);
   //useEffect permite ejecutar una operación despues de renderizar
   //el componente 
   //El arreglo vacío indica que este efecto 
@@ -42,7 +42,7 @@ function App() {
   //la app se monta por primera vez
   useEffect(() => {
     obtenerTareas();
-  }, []);
+  }, [obtenerTareas]);
   //Crea una nueva tarea enviandola al backend y actualizando el estado de las tareas
   async function agregarTarea(tarea) {
     try {
@@ -57,10 +57,10 @@ function App() {
           "Content-Type": "application/json",
         },
         //Convertimos el objeto de Javascript a una cadena JSON antes de enviarlo
-        body: JSON.stringify(tarea.titulo),
+        body: JSON.stringify({ titulo: tarea }),
       });
       if(!respuesta.ok) {
-        throw new Error('Error al agregar la tarea: ${respuesta.statusText}');
+        throw new Error(`Error al agregar la tarea: ${respuesta.statusText}`);
       }
 
       //Obtenemos la tarea creada desde la respuesta del servidor
@@ -79,16 +79,12 @@ function App() {
     
       const tareaActual = tareas.find(
         (tarea) => tarea._id === id);
-       
-        
-        //Si por alguna razón no se encuentra la tarea
-        //se detiene la operación y se muestra error en consola
-        if(!tareaActual) {
-          throw new Error('Tarea no encontrada');
-            return;
-        }
 
-        //Realizamos una petición de actualización (PATCH) 
+      //Si por alguna razón no se encuentra la tarea
+      //se detiene la operación y se muestra error en consola
+      if(!tareaActual) {
+        throw new Error('Tarea no encontrada');
+      }
         //al endpoint de la API para alternar el estado de completada de la tarea
         const respuesta = await fetch(`${API_URL}/${id}`, {
           //Método patch para modificar parcialmente un recurso existente
@@ -101,7 +97,7 @@ function App() {
         });
         
         if(!respuesta.ok) {
-          throw new Error('Error al alternar la tarea: ${respuesta.statusText}');
+          throw new Error(`Error al alternar la tarea: ${respuesta.statusText}`);
         }
 
         //En el estado actual del backend
@@ -136,7 +132,7 @@ function App() {
         method: "DELETE",
       });
       if(!respuesta.ok) {
-        throw new Error('Error al eliminar la tarea: ${respuesta.statusText}');
+        throw new Error(`Error al eliminar la tarea: ${respuesta.statusText}`);
       }
       //La tarea de mongo ya fue eliminada
       //ahora actualizamos el estado de React eliminando la tarea del arreglo

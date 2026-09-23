@@ -6,10 +6,10 @@ function Tarea({ tarea, onAlternar, onEliminar }) {
           <input
             type="checkbox"
             checked={tarea.completada}
-            onChange={() => onAlternar(tarea.id)}
+            onChange={() => onAlternar(tarea._id)}
           />
           <span className={tarea.completada ? "estado-completada" : "estado-pendiente"}>
-            {tarea.nombre}
+            {tarea.titulo}
           </span>
         </label>
       </td>
@@ -19,7 +19,7 @@ function Tarea({ tarea, onAlternar, onEliminar }) {
         </span>
       </td>
       <td>
-        <button className="boton-eliminar" onClick={() => onEliminar(tarea.id)}>
+        <button className="boton-eliminar" onClick={() => onEliminar(tarea._id)}>
           Eliminar
         </button>
       </td>
